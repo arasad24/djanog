@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!-- Main Container -->
+    <div class="container mt-5 pt-3">
+
+        <!-- Section: product details -->
+        <section id="productDetails" class="pb-5">
+
+            <!--News card-->
+            <div class="card mt-5 hoverable">
+                <div class="row mt-5">
+                    <div class="col-lg-6">
+                        <div class="row mx-2">
+                            <img src="{{object.image.url}}" alt="First slide" class="img-fluid">
+
+                        </div>
+
+                        <!--Grid row-->
+                        <div class="row mb-4">
+
+                            <div class="col-md-12">
+
+                                <div id="mdb-lightbox-ui"></div>
+
+                                <div class="mdb-lightbox no-margin">
+
+                                    <figure class="col-md-4">
+                                        <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/1.jpg" data-size="1600x1067">
+                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/1.jpg" class="img-fluid">
+                                        </a>
+                                    </figure>
+                                    <figure class="col-md-4">
+                                        <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/2.jpg" data-size="1600x1067">
+                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/2.jpg" class="img-fluid">
+                                        </a>
+                                    </figure>
+                                    <figure class="col-md-4">
+                                        <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/20.jpg" data-size="1600x1067">
+                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/20.jpg" class="img-fluid">
+                                        </a>
+                                    </figure>
+     
+                                    <!--Grid column-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                    </div>
+                    <div class="col-lg-5 mr-3 text-center text-md-left">
+                        <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
+                            <strong>{{object.title}} </strong>
+                        </h2>
+                        <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">bestseller</span>
+                        </strong>
+                        </h2>
+                        <span class="badge badge-success product mb-4 ml-2">SALE</span>
+                        <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
+                            {% if object.discount_price %}
+                            <span class="red-text font-weight-bold">
+                                <strong>${{object.discount_price}}</strong>
+                            </span>
+                            <span class="grey-text">
+                                <small>
+                                    <s>${{object.price}}</s>
+                                </small>
+                            </span>
+                            {% else %}
+                            <span class="red-text font-weight-bold">
+                                <strong>${{object.price}}</strong>
+                            </span>
+                            {% endif %}
+                        </h3>
+
+                        <p class="ml-xl-0 ml-4">{{item.description}}
+                        </p>
+                        <p class="ml-xl-0 ml-4">
+                            <strong>Storage: </strong>64GB</p>
+                        <p class="ml-xl-0 ml-4">
+                            <strong>Size: </strong>9.6-inch</p>
+                        <p class="ml-xl-0 ml-4">
+                            <strong>Resolution: </strong>2048 x 1536</p>
+                        <p class="ml-xl-0 ml-4">
+                            <strong>Availability: </strong>In stock</p>
+
+                        <!-- Add to Cart -->
+                        <section class="color">
+                            <div class="mt-5">
+                                <p class="grey-text">Choose your color</p>
+                                <div class="row text-center text-md-left">
+
+                                    <div class="col-md-4 col-12 ">
+                                        <!--Radio group-->
+                                        <div class="form-group">
+                                            <input class="form-check-input" name="group100" type="radio" id="radio100" checked="checked">
+                                            <label for="radio100" class="form-check-label dark-grey-text">White</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--Radio group-->
+                                        <div class="form-group">
+                                            <input class="form-check-input" name="group100" type="radio" id="radio101">
+                                            <label for="radio101" class="form-check-label dark-grey-text">Silver</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--Radio group-->
+                                        <div class="form-group">
+                                            <input class="form-check-input" name="group100" type="radio" id="radio102">
+                                            <label for="radio102" class="form-check-label dark-grey-text">Gold</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-3 mb-4">
+                                    <div class="col-md-12 text-center text-md-left text-md-right">
+                                        <a href="{{object.get_add_to_cart_url}}" class="btn btn-primary btn-rounded">
+                                            <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart</a>
+                                        <a href="{{object.get_remove_single_item_from_cart}}" class="btn btn-primary btn-rounded">
+                                            <i class="fas fa-cart-minus mr-2" aria-hidden="true"></i> Remove from cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- /.Add to Cart -->
+                    </div>
+                </div>
+            </div>
+            <!--News card-->
+
+        </section>
+
+
+    
+    </div>
+    <!-- /.Main Container -->
+    
+
+    {% endblock content %}

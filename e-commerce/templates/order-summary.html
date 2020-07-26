@@ -1,0 +1,147 @@
+
+{% extends 'base.html' %}
+
+
+{% include 'order_summary_css.html' %}
+
+
+{% block content %}
+
+
+
+  <!--Main Layout-->
+  <main>
+
+    <!-- Main Container -->
+    <div class="container">
+
+<body class="cart-v1 hidden-sn white-skin animated">
+
+      <section class="section">
+
+        <!-- Shopping Cart table -->
+        <div class="table-responsive">
+
+          <table class="table product-table">
+
+            <!-- Table head -->
+            <thead>
+              <tr>
+                <th></th>
+                <th class="font-weight-bold">
+                  <strong>Product</strong>
+                </th>
+                <th class="font-weight-bold">
+                  <strong>Color</strong>
+                </th>
+                <th></th>
+                <th class="font-weight-bold">
+                  <strong>Price</strong>
+                </th>
+                <th class="font-weight-bold">
+                  <strong>QTY</strong>
+                </th>
+                <th class="font-weight-bold">
+                  <strong>Amount</strong>
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <!-- /.Table head -->
+
+            <!-- Table body -->
+            <tbody>
+              
+              <!-- First row -->
+              {% for item_list in object.items.all %}
+              <tr>
+                <th scope="row">
+                  <img src="{{item_list.item.image.url}}" alt="" class="img-fluid z-depth-0">
+                </th>
+                <td>
+                  <h5 class="mt-3">
+                    <strong>{{item_list.item.title}}</strong>
+                  </h5>
+                  <p class="text-muted">Apple</p>
+                </td>
+                <td>White</td>
+                <td></td>
+                <td>${{item_list.item.price}}</td>
+                <td class="text-center text-md-left">
+                  <span class="qty">{{item_list.quantity}} </span>
+                    <a href=" {% url 'remove-single-item-from-cart' item_list.item.slug %} " class="btn btn-sm btn-primary btn-rounded " type="button"> 
+                      &mdash;
+                  </a>
+                  <a href="{% url 'add-to-cart' item_list.item.slug %}" class="btn btn-sm btn-primary btn-rounded " type="button"> 
+                    +
+                </a>
+
+                </td>
+                <td class="font-weight-bold">
+                  <strong>${{item_list.get_total_price}}</strong>
+                </td>
+                <td>
+                  <a href="{% url 'remove-from-cart' item_list.item.slug %}" type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Remove item">X
+                  </a>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="5">Your cart is empty</td>
+            </tr>
+            <tr>
+              <td>
+              <a colspan="5" class="btn btn-primary float-right" href="/">Contunue shoping</a>
+              </td>
+          </tr>
+              {% endfor %}
+              <!-- /.First row -->
+
+              {% if object.get_total %}
+              <tr >
+                <td colspan="5"></td>
+                
+                <td >
+                  <h4 class="mt-2">
+                    <strong>Total</strong>
+                  </h4>
+                </td>
+                <td class="text-right">
+                  <h4 class="mt-2">
+                    <strong>${{ object.get_total }} <a href="#" class="badge badge-default">Saved ${{ object.items.get_amount_saved }}</a></strong>
+                   
+                  </h4>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5" class="text-right">
+                  <a href="/" type="button" class="btn btn-primary btn-rounded">Continue Shopping
+                    <i class="fas fa-angle-right right"></i>
+                  </a>
+                </td>
+                <td colspan="3" class="text-right">
+                  <a href="/checkout" type="button" class="btn btn-primary btn-rounded">Complete purchase
+                    <i class="fas fa-angle-right right"></i>
+                  </a>
+                </td>
+
+              </tr>
+              {% endif %}
+              <!-- Fourth row -->
+
+            </tbody>
+            <!-- /.Table body -->
+
+          </table>
+
+        </div>
+        <!-- Shopping Cart table -->
+
+      </section>
+
+    </div>
+    <!-- /Main Container -->
+
+  </main>
+  <!--Main Layout-->
+{% endblock content %}
